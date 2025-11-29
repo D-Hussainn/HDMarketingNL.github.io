@@ -1,3 +1,4 @@
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -14,7 +15,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -27,12 +27,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
 
-
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             this.classList.add('active');
-
 
             const navMenu = document.getElementById('navMenu');
             if (navMenu.classList.contains('show')) {
@@ -41,7 +39,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
 
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
