@@ -5,11 +5,447 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HD Marketing | Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #000 !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand img {
+      height: 60px;
+      transition: transform 0.4s ease, filter 0.3s ease;
+      filter: brightness(1.2);
+    }
+
+    .navbar-brand img:hover {
+      transform: rotate(5deg) scale(1.1);
+      filter: brightness(1.5);
+    }
+
+    .nav-link {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #b0b0b0 !important;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 8px 16px !important;
+      cursor: pointer;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #0a0a0a;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 20px 80px;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      left: -200px;
+      animation: float 12s ease-in-out infinite;
+      filter: blur(80px);
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      right: -150px;
+      animation: float 15s ease-in-out infinite reverse;
+      filter: blur(80px);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-section h1 {
+      font-weight: 900;
+      font-size: 6rem;
+      letter-spacing: 0.2em;
+      color: #fff;
+      margin-bottom: 30px;
+      animation: fadeInScale 1.2s ease-out;
+      text-shadow: 0 0 80px rgba(255, 255, 255, 0.1),
+                   0 0 40px rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .hero-section h1::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      animation: expandLine 1.5s ease-out 0.5s backwards;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes expandLine {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100px;
+      }
+    }
+
+    .hero-section p {
+      font-size: 1.5rem;
+      color: #c0c0c0;
+      max-width: 750px;
+      margin: 40px auto 0;
+      font-weight: 400;
+      line-height: 1.9;
+      animation: fadeInUp 1s ease-out 0.4s backwards;
+    }
+
+    .cta-buttons {
+      margin-top: 50px;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+    }
+
+    .btn-primary-custom {
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+      color: #000;
+    }
+
+    .btn-secondary-custom {
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    /* Particle effect */
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: particle-float 15s linear infinite;
+    }
+
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Section styling */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 3rem;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(20, 20, 30, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.03);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1),
+                  0 0 40px rgba(255, 255, 255, 0.05);
+    }
+
+    .card h3 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #b0b0b0;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* About text */
+    .about-text p {
+      color: #c0c0c0;
+      line-height: 1.9;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Contact section */
+    .contact-section {
+      background: rgba(20, 20, 30, 0.4);
+      border-radius: 20px;
+      padding: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-section a {
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .contact-section a:hover {
+      color: #ccc;
+      border-bottom-color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #b0b0b0;
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 80px;
+    }
+
+    footer h5 {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    footer a {
+      color: #fff;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ccc;
+    }
+
+    footer .text-muted {
+      color: #666 !important;
+    }
+
+    .map-container {
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .map-container iframe {
+      filter: grayscale(100%) invert(92%) contrast(83%);
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 3rem;
+        letter-spacing: 0.1em;
+      }
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .btn-primary-custom,
+      .btn-secondary-custom {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+        padding: 15px 20px;
+        font-size: 1rem;
+      }
+      
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+      }
+    }
+
+    /* Gradient line separator */
+    .gradient-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      margin: 60px auto;
+      width: 60%;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="img/hd marketing.png" alt="HD Marketing Logo" />
@@ -19,52 +455,225 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navMenu">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="dienst.html">Diensten</a></li>
-          <li class="nav-item"><a class="nav-link" href="over.html">Over ons</a></li>
-          <li class="nav-item"><a class="nav-link" href="contactpagina.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#diensten">Diensten</a></li>
+          <li class="nav-item"><a class="nav-link" href="#over">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section class="hero-section">
-    <div>
+  <section class="hero-section" id="home">
+    <div class="hero-content">
       <h1>HD MARKETING</h1>
       <p>Innovatieve marketing die jouw bedrijf écht laat groeien.<br />Slim, creatief en resultaatgericht.</p>
+      <div class="cta-buttons">
+        <a href="#diensten" class="btn-primary-custom">Onze Diensten</a>
+        <a href="#contact" class="btn-secondary-custom">Neem Contact Op</a>
+      </div>
     </div>
+    <!-- Particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
   </section>
 
-  <section class="container text-center my-5">
-    <h2 class="mb-5">Waarom kiezen voor HD Marketing?</h2>
+  <section class="container text-center my-5 py-5">
+    <h2 class="fade-in">Waarom kiezen voor HD Marketing?</h2>
     <div class="row g-4 justify-content-center">
-      <div class="col-md-4">
+      <div class="col-md-4 fade-in fade-in-delay-1">
         <div class="card p-4">
-          <h3 class="fw-bold">Resultaatgericht</h3>
+          <h3>Resultaatgericht</h3>
           <p>Elke campagne is ontworpen om meetbare groei en rendement te leveren. Jouw succes is ons doel.</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 fade-in fade-in-delay-2">
         <div class="card p-4">
-          <h3 class="fw-bold">Creatief & Innovatief</h3>
+          <h3>Creatief & Innovatief</h3>
           <p>We combineren creativiteit met data en technologie om jouw merk te laten opvallen.</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 fade-in fade-in-delay-3">
         <div class="card p-4">
-          <h3 class="fw-bold">Persoonlijke aanpak</h3>
+          <h3>Persoonlijke aanpak</h3>
           <p>We luisteren naar jouw verhaal en maken marketing op maat die écht bij jou past.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="gradient-line"></div>
+
+  <section class="container py-5" id="diensten">
+    <h2 class="text-center mb-5">Onze Diensten</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+          <h3>Digitale Marketing</h3>
+          <p>Wij zorgen dat jouw bedrijf online gezien wordt door de juiste doelgroep met krachtige campagnes, SEO optimalisatie en social media strategieën die converteren.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+          <h3>Merkstrategie</h3>
+          <p>Een sterke merkidentiteit is de sleutel tot succes. Wij bouwen een herkenbaar en authentiek merk dat vertrouwen wekt en klanten bindt.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+          <h3>Content Creatie</h3>
+          <p>Wij creëren aantrekkelijke en relevante content, van video's tot blogs, die jouw doelgroep boeit en aanzet tot actie.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+          <h3>Data Analyse & Optimalisatie</h3>
+          <p>Met data-gedreven inzichten verbeteren we voortdurend jouw campagnes voor maximale impact en rendement.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+          <h3>Social Media Management</h3>
+          <p>We beheren jouw social media kanalen professioneel om engagement en merkbekendheid te vergroten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gradient-line"></div>
+
+  <section class="container py-5" id="over">
+    <h2 class="text-center mb-4">Over HD Marketing</h2>
+    <div class="px-3 px-md-5 about-text">
+      <p>Bij HD Marketing geloven we dat marketing meer is dan alleen promotie. Het is een strategisch partnerschap dat jouw bedrijf helpt om duurzame groei te realiseren. Met een passie voor innovatie en creativiteit zetten we de nieuwste technieken in om jouw merk écht te laten schitteren.</p>
+      <p>Ons team bestaat uit specialisten met jarenlange ervaring in digitale marketing, branding en content creatie. Samen maken we marketing die niet alleen indruk maakt, maar ook meetbare resultaten oplevert.</p>
+      <p>Onze missie is simpel: jouw bedrijf succesvol maken door slimme, op maat gemaakte marketingoplossingen. We luisteren, denken mee en zetten door totdat het resultaat bereikt is.</p>
+    </div>
+  </section>
+
+  <div class="gradient-line"></div>
+
+  <section class="container py-5" id="contact">
+    <div class="contact-section">
+      <h2 class="text-center">Neem contact met ons op</h2>
+      <p class="text-center">Heb je vragen of wil je weten wat HD Marketing voor jouw bedrijf kan betekenen? Neem gerust contact op via onderstaande gegevens.</p>
+      <p class="text-center"><strong>Email:</strong> <a href="mailto:HDMarketing@gmail.com">HDMarketing@gmail.com</a></p>
+      <p class="text-center"><strong>Telefoon:</strong> <a href="tel:+31600000000">0600000000</a></p>
+    </div>
+  </section>
+
   <footer>
-    <p><strong>HD Marketing</strong></p>
-    <p>Email: <a href="mailto:hdmarketingnl@gmail.com" class="text-decoration-underline text-light">hdmarketingnl@gmail.com</a></p>
-    <p>Telefoon: <a href="tel:+31600000000" class="text-decoration-underline text-light">0600000000</a></p>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h5 class="mb-3"><strong>HD Marketing</strong></h5>
+          <p class="mb-2"><strong>Email:</strong> <a href="mailto:hdmarketingnl@gmail.com">hdmarketingnl@gmail.com</a></p>
+          <p class="mb-3"><strong>Telefoon:</strong> <a href="tel:+31600000000">0600000000</a></p>
+          <p class="mt-4 text-muted small">© 2024 HD Marketing. Alle rechten voorbehouden.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d78478.0600440826!2d4.227468414387121!3d52.071731041210036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b72f4298bd71%3A0x400de5a8d1e6c10!2sDen%20Haag!5e0!3m2!1snl!2snl!4v1764446420639!5m2!1snl!2snl" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0; border-radius: 15px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const targetPosition = target.offsetTop - navbarHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update active state
+          document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          // Close mobile menu if open
+          const navMenu = document.getElementById('navMenu');
+          if (navMenu.classList.contains('show')) {
+            navMenu.classList.remove('show');
+          }
+        }
+      });
+    });
+
+    // Update active nav link on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const navbarHeight = document.querySelector('.navbar').offsetHeight;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - navbarHeight - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${section.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = '#000';
+        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
+      } else {
+        navbar.style.background = '#000';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
